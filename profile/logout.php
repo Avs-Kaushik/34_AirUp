@@ -1,0 +1,9 @@
+<?php
+session_start();
+if(empty($_SESSION["uname"]))
+{
+    header("refresh:0.01;url=http://localhost/check/homepage.php");
+}
+session_destroy();
+header("refresh:0.01;url=http://localhost/check/homepage.php");
+?>

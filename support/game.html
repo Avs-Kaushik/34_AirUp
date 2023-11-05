@@ -1,0 +1,87 @@
+<html>
+<head>
+<style>
+body{
+    font-family: 'Comfortaa', cursive;
+}
+#player{
+position: absolute;
+top:80px;
+left: 80px;
+width:30px;
+height:30px;
+border-radius: 50%;
+background-color:purple;
+}
+#score{
+position:absolute;
+margin-top:40%;
+font-size:36px;
+background-color:black;
+}
+#co-ord{
+color:black;
+position:absolute;
+right:600px;
+top:10px;
+font-size:40px;
+}
+.cont{
+    top:30px;
+    left:30px;
+    margin:2%;
+    padding:10px;
+    box-shadow:1px 3px 18px rgb(0,0,0,0.3);
+    min-height:80vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+}
+</style>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+  </style>
+</head>
+<body>
+<h1 align="center">The Key game</h1>
+<div class="cont">
+<div id="player" style="color:azure;"></div>
+<div id="score" style="color:azure;"></div>
+<div id="co-ord" style="color:azure;"></div>
+</div>
+<script>
+var p=document.getElementById("player");
+var s=document.getElementById("score");
+var c=document.getElementById("co-ord");
+var score=0;
+var position={x:80,y:80};
+document.addEventListener("keydown",function(event){
+document.body.style.backgroundColor="#ADD8E6";
+if (event.key=="ArrowDown")
+{
+position.y+=10;
+}
+else if (event.key=="ArrowUp")
+{
+position.y-=10;
+}
+else if (event.key=="ArrowLeft")
+{
+position.x-=10;
+}
+else if (event.key=="ArrowRight")
+{
+position.x+=10;
+}
+p.style.top=position.y+"px";
+p.style.left=position.x+"px";
+c.innerHTML="Coordinates : (&ensp;"+position.x+","+position.y+"&ensp;)";
+if (position.x===200 && position.y===200)
+{
+score+=10;
+s.innerHTML="score: "+score;
+}
+});
+</script>
+</body>
+</html>

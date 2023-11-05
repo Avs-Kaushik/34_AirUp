@@ -1,0 +1,37 @@
+<?php
+session_start();
+include('connect.php');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'phpmailer/src/Exception.php'; 
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+include('connect.php');
+$sid=$_POST["sid"];
+$des=$_POST["des"];
+$iid=$_POST["iid"];
+$eid=$_POST["eid"];
+$tit=$_POST["tit"];
+$oask=$_POST["oask"];
+$oeq=$_POST["oeq"];
+$reqask=$_POST["reqask"];
+$reqeq=$_POST["reqeq"];
+$deb=$_POST["deb"];
+$in=$_POST["in"];
+$mail = new PHPMailer (true);
+$mail->isSMTP();
+$mail->Host = 'smtp.gmail.com';
+$mail->SMTPAuth = true;
+$mail->Username = 'avskaushik123@gmail.com';
+$mail->Password = 'gixgmgrmnowbpgzg'; 
+$mail->SMTPSecure = 'ss1';
+$mail->port =465;
+$mail->setFrom('avskaushik123@gmail.com');
+$m=mysqli_fetch_array(mysqli_query($conn,"SELECT email from investors where iid='$iid'"))[0];
+$mail->addAddress($m);
+$mail->isHTML(true);
+$mail->Subject="Congratulations! Your Bid won the Auction.  - AirUp";
+$mail->Body = "Hello ".$_SESSION['uname'].",<br><br> Entreprenuer_ID:".$eid."<br>StartUp_ID:".$sid."<br><h3>Idea Title:".$tit."</h3><br>".$des."<br><br><h4>Investment Details</h4><br>Accepted Bit Amount: ".$reqask." @ ".$reqeq."% Equity + ".$deb." @ ".$in."% Debt<br>You may Invest directly & securely to entreprenuer by using below link:<br>https://rzp.io/l/OgQUzjd<br><br> Regards,<br>Team AirUp";
+$mail->send();
+header("Location:http://localhost/check/Entreprenuer-Home.php");
+?>
