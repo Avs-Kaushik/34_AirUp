@@ -23,13 +23,17 @@ for item in most_common_list:
 print(l)
 
 # Checking for 80% clone
-l=['startup', 'funding', 'platform', 'objectives', 'reality', 'fosters', 'hub', 'airup', 'investors', 'ideas']
-x=[[],['startup', 'funding', 'platform', 'hub', 'airup', 'potential', 'support', 'investors', 'ideas', 'investment']]
-for i in x:
-  c=0
-  for j in l:
-    for k in i:
-      if j==k:
-        c+=1
-  if c==len(i)*0.8:
-    print("possible clone")
+a = ['blockchain', 'NLP', 'Database', 'Startup', 'ML']
+b = []
+n = int(input("Enter the number of lists: "))
+
+for _ in range(n):
+    b.append(input("Enter space-separated values: ").split())
+print(a,b)
+for sublist in b:
+    sublist = [item for item in sublist]
+    common_elements = list(set(a).intersection(set(sublist)))
+    res=len(list(set(a).union(set(sublist))))
+    prob=len(common_elements)/res
+    print(prob)
+
